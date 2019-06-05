@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- MyBatis 기본 설정 -->
+<configuration>
+	<typeAliases>
+		<!-- 데이터 객체화에 활용되는 VO 클래스 등록 -->
+		<typeAlias alias="uservo" type="com.cafe24.sns.vo.UserVO"/>
+    </typeAliases>
+	<mappers>
+		<mapper resource="mybatis/mapper/user.xml"/>
+	</mappers>
+</configuration>
