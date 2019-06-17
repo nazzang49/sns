@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post">
+
+	<select id="getCountByAlbumNo" parameterType="long" resultType="integer">
+	<![CDATA[
+	select count(*) from post where albumNo=#{albumNo}
+	]]>
+	</select>
+	
+	<select id="getCountByUserEmail" parameterType="string" resultType="integer">
+	<![CDATA[
+	select count(*)
+	from album a, post p
+	where a.userEmail = #{userEmail}
+	and a.no = p.albumNo
+	]]>
+	</select>
+	
+	<!-- 아래 3개 쿼리 = 대표 게시물 1개 가져오기 -->
+	<select id="getPostByAlbumNoAndPostNo" parameterType="map" resultType="postvo">
+	<![CDATA[
+	select * from post where albumNo=#{albumNo} and postNo=#{postNo}
+	]]>
+	</select>
+	
+	<select id="getPostByAlbumNo" parameterType="long" resultType="postvo">
+	<![CDATA[
+	select * from post where albumNo=#{albumNo} order by no desc limit 0,1
+	]]>
+	</select>
+	
+	<select id="getPost" parameterType="string" resultType="postvo">
+	<![CDATA[
+	select p.no, p.title, p.contents, p.image, p.regDate, p.albumNo
+	from album a, post p
+	where a.userEmail = #{userEmail}
+	and a.no = p.albumNo
+	order by a.no desc, p.no desc
+	limit 0,1
+	]]>
+	</select>
+	<!-- //done -->
+	
+	<!-- 아래 2개 쿼리 = 게시물 리스트 가져오기 -->
+	<select id="getPostListByAlbumNo" parameterType="map" resultType="postvo">
+	<![CDATA[
+	select p.no, p.title, p.contents, p.image, p.regDate, p.albumNo
+	from album a, post p
+	where a.no = #{albumNo}
+	and a.no = p.albumNo
+	order by p.no desc
+	limit #{startRow}, #{pageSize}
+	]]>
+	</select>
+	
+	<select id="getPostList" parameterType="map" resultType="postvo">
+	<![CDATA[
+	select p.no, p.title, p.contents, p.image, p.regDate, p.albumNo
+	from album a, post p
+	where a.userEmail = #{userEmail}
+	and a.no = p.albumNo
+	order by p.no desc
+	limit #{startRow}, #{pageSize}
+	]]>
+	</select>
+	
+</mapper>

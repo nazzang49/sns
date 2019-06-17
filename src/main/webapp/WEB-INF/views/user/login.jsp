@@ -48,14 +48,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3 class="tittle">로그인</h3>
 				<div class="row inner-sec">
 					<div class="login p-5 bg-light mx-auto mw-100">
-					<form action="#" method="post">
+					<form action="${pageContext.request.contextPath}/user/auth" method="post">
 							<div class="form-group">
 							  <label for="exampleInputEmail1 mb-2">Email</label>
-							  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required="">
+							  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" name="email">
 							</div>
 							<div class="form-group">
 							  <label for="exampleInputPassword1 mb-2">Password</label>
-							  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="" required="">
+							  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="" name="pw">
 							</div>
 							<div style="text-align: center;">
 							<button type="submit" class="btn btn-primary submit mb-4">로그인</button>

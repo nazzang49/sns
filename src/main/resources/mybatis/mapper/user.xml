@@ -5,8 +5,20 @@
 
 	<insert id="join" parameterType="uservo">
 	<![CDATA[
-	insert into user values(#{email}, #{pw}, #{gender}, #{age}, null, now())
+	insert into user values(#{email}, #{name}, #{pw}, #{gender}, #{age}, null, now())
 	]]>
 	</insert>
+	
+	<select id="existEmail" parameterType="string" resultType="uservo">
+	<![CDATA[
+	select * from user where email=#{email}
+	]]>
+	</select>
+	
+	<select id="getUser" parameterType="map" resultType="uservo">
+	<![CDATA[
+	select * from user where email=#{email} and pw=#{pw}
+	]]>
+	</select>
 
 </mapper>

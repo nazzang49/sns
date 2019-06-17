@@ -28,11 +28,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		//3) 메소드의 @Auth 받기
 		Auth auth = handlerMethod.getMethodAnnotation(Auth.class);
 		
-		//4) 없을 시 Class의 @Auth 받기
-//		if(auth==null) {
-//			auth = handlerMethod.getMethod().getDeclaringClass().getClassLoader(Auth.class);
-//		}
-		
 		//5) @Auth 어노테이션을 통해 인증 절차가 필요하지 않은 경우 = 통과
 		if(auth==null) {
 			return true;
@@ -61,10 +56,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if(role==Auth.Role.USER) {
 			return true;
 		}
-		
-		//9) Admin Role 권한 체크
-		//vo.getRole().equals("ADMIN")
-		
 		return true;
 	}
 	

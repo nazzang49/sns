@@ -5,8 +5,14 @@
 	<typeAliases>
 		<!-- 데이터 객체화에 활용되는 VO 클래스 등록 -->
 		<typeAlias alias="uservo" type="com.cafe24.sns.vo.UserVO"/>
+		<typeAlias alias="postvo" type="com.cafe24.sns.vo.PostVO"/>
+		<typeAlias alias="timelinevo" type="com.cafe24.sns.vo.TimelineVO"/>
+		<typeAlias alias="albumvo" type="com.cafe24.sns.vo.AlbumVO"/>
     </typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mapper/user.xml"/>
+		<mapper resource="mybatis/mapper/post.xml"/>
+		<mapper resource="mybatis/mapper/timeline.xml"/>
+		<mapper resource="mybatis/mapper/album.xml"/>
 	</mappers>
 </configuration>

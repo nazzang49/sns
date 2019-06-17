@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="album">
+
+	<!-- 앨범 정보 가져오기 -->
+	<select id="getAlbumList" parameterType="string" resultType="albumvo">
+	<![CDATA[
+	select a.no, a.title, a.description, a.regDate, count(p.no) as postCount
+	from album a, post p
+	where a.userEmail=#{userEmail}
+	and a.no = p.albumNo
+	]]>
+	</select>
+	
+</mapper>

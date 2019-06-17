@@ -35,9 +35,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="${pageContext.request.contextPath}/assets/css/fontawesome-all.css" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
+	<script src="${pageContext.servletContext.contextPath }/assets/js/jquery-2.2.3.min.js"></script>
 </head>
 
 <body>
+<script type="text/javascript">
+	$(function(){
+		
+		$('#validationDefault01').change(function(){
+			$('#check-email').show();
+			$('#pass-email').hide();
+		});
+		
+		$('#check-email').on('click',function(){
+			
+			var email = $('#validationDefault01').val();
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/user/api/check-email?email="+email,
+				type:"get",
+				dataType:"json",
+				success:function(response){
+					if(response.result!="success"){
+						alert("[통신] 실패");
+						return;
+					}
+					if(response.data==false){
+						alert("[중복] 다른 이메일 주소 입력");
+						$('#validationDefault01').val("");
+						$('#validationDefault01').focus();
+						return;
+					}
+					alert("[가입] 가능");
+					$('#check-email').hide();
+					$('#pass-email').show();
+				}
+			});
+		});
+	});
+</script>
+
+
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 	<!--/banner-->
 	<div class="banner-inner">
@@ -49,12 +87,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="inner-sec" style="width:500px; margin: 30px auto;">
 			<div class="login p-5 bg-light mx-auto mw-100">
 				<form action="${pageContext.request.contextPath}/user/join" method="post">
-						<div class="form-row">
+							<div class="form-row">
 								<div class="col-md-6 mb-3">
 										<label for="validationCustom01">이메일</label>
 									<input type="text" class="form-control" id="validationDefault01" placeholder="이메일 형식 준수" style="width:250px;" name="email">
 								</div>
-								<button class="btn btn-primary submit mb-4" style="height: 40px; margin-top:30px; margin-left:60px;">이메일 중복 체크</button>
+								<button type="button" class="btn btn-primary submit mb-4" id="check-email" style="height: 40px; margin-top:30px; margin-left:60px;">이메일 중복 체크</button>
+							</div>
+							<div class="form-row">
+								<div class="col-md-6 mb-3">
+										<label for="validationCustom01">이름</label>
+									<input type="text" class="form-control" id="validationDefault01" placeholder="닉네임 기입" style="width:400px;" name="name">
+								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">

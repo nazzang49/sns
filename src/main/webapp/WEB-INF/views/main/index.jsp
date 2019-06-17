@@ -36,14 +36,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	    rel="stylesheet">
 </head>
 
-<script type="text/javascript">
-	if('${joinflag}'=='true'){
-		alert("[가입 환영] 메인으로 이동");
-	}else{
-		alert("[가입 실패] 메인으로 이동");
-	}
-</script>
-
 <body>
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 	<!--/banner-->

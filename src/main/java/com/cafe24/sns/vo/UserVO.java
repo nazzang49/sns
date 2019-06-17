@@ -5,9 +5,10 @@ import java.sql.Date;
 public class UserVO {
 
 	private String email;
+	private String name;
 	private String pw;
 	private String gender;
-	private int age;
+	private Integer age;
 	private String friends;
 	private Date regDate;
 	
@@ -16,6 +17,12 @@ public class UserVO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getPw() {
 		return pw;
@@ -29,10 +36,10 @@ public class UserVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getFriends() {
@@ -50,7 +57,7 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "UserVO [email=" + email + ", pw=" + pw + ", gender=" + gender + ", age=" + age + ", friends=" + friends
-				+ ", regDate=" + regDate + "]";
+		return "UserVO [email=" + email + ", name=" + name + ", pw=" + pw + ", gender=" + gender + ", age=" + age
+				+ ", friends=" + friends + ", regDate=" + regDate + "]";
 	}
 }

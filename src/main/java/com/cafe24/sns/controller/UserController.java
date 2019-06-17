@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.cafe24.sns.service.UserService;
+import com.cafe24.sns.vo.TimelineVO;
 import com.cafe24.sns.vo.UserVO;
 
 @Controller
@@ -30,10 +30,21 @@ public class UserController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(@ModelAttribute UserVO uvo,
 					   Model model) {
-		boolean flag = userService.join(uvo);
+		
+		//회원가입 성공 = 타임라인 생성 by 디폴트
+		TimelineVO tvo = new TimelineVO();
+		tvo.setEmail(uvo.getEmail());
+		tvo.setTitle("welcome to "+uvo.getName()+"'s timeline");
+		tvo.setLogo("/image/201951134533963.jpg");
+		
+		//회원가입 + 타임라인 생성 by 트랜잭션 처리
+		boolean flag = userService.join(uvo, tvo);
+		
+		//회원가입 성공여부
 		if(!flag) model.addAttribute("joinflag", false);
 		else model.addAttribute("joinflag", true);
-		return "redirect:/";
+		
+		return "user/joinsuccess";
 	}
 	
 }

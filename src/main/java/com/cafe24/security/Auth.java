@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Auth {
 
-	//사용자와 관리자 구분할 인증 어노테이션
+	//사용자 and 관리자 지정
 	public enum Role{
 		USER,
 		ADMIN

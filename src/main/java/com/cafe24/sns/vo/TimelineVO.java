@@ -1,6 +1,6 @@
 package com.cafe24.sns.vo;
 
-public class MypageVO {
+public class TimelineVO {
 
 	private String email;
 	private String title;
@@ -28,7 +28,6 @@ public class MypageVO {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	
 	public String getInterests() {
 		return interests;
 	}

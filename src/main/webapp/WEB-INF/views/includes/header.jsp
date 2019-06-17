@@ -11,6 +11,8 @@
 						<i class="fab fa-linode"></i> NEW WAVE</a>
 				</div>
 				<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+					<c:choose>
+					<c:when test="${empty authUser }">
 					<span class="mx-lg-4 mx-md-2  mx-1">
 						<a href="${pageContext.request.contextPath}/user/login">
 							<i class="fas fa-lock"></i> 로그인</a>
@@ -19,6 +21,14 @@
 						<a href="${pageContext.request.contextPath}/user/join">
 							<i class="far fa-user"></i> 회원가입</a>
 					</span>
+					</c:when>
+					<c:otherwise>
+					<span class="mx-lg-4 mx-md-2  mx-1">
+						<a href="${pageContext.request.contextPath}/user/logout">
+							<i class="fas fa-lock"></i> 로그아웃</a>
+					</span>
+					</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="col-md-4 log-icons text-right">
 					<ul class="social_list1 mt-3">
@@ -64,20 +74,18 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#">소개</a>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-							    aria-expanded="false">
-								마이 페이지
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#"></a>
-								<a class="dropdown-item" href="blog1.html">Standard Blog</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="blog2.html">2 Column Blog</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="blog3.html">3 Column Blog</a>
-							</div>
+						<c:if test="${authUser!=null }">
+						<!-- 현재 접속자의 timeline 메인으로 이동 by PathVariable -->
+						<!-- 친구 관계의 사용자 타임라인 이동 가능 -->
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/timeline/${authUser.email }">${authUser.name }님의 타임라인</a>
 						</li>
+						</c:if>
+						<c:if test="${authUser!=null }">
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/timeline/${authUser.email }/admin/mypage">관리페이지</a>
+						</li>
+						</c:if>
 					</ul>
 					<form action="#" method="post" class="form-inline my-2 my-lg-0 header-search">
 						<!-- 사용자 검색 by 이메일 주소 -->
