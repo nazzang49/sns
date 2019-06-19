@@ -66,7 +66,7 @@ public class UserDAO {
 						PreparedStatement pstmt = conn.prepareStatement(sql);
 						pstmt.setString(1, tvo.getEmail());
 						pstmt.setString(2, tvo.getTitle());
-						pstmt.setString(3, tvo.getLogo());
+						pstmt.setString(3, tvo.getImage());
 						return pstmt;
 					}
 				});

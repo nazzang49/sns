@@ -35,7 +35,7 @@ public class UserController {
 		TimelineVO tvo = new TimelineVO();
 		tvo.setEmail(uvo.getEmail());
 		tvo.setTitle("welcome to "+uvo.getName()+"'s timeline");
-		tvo.setLogo("/image/201951134533963.jpg");
+		tvo.setImage("/image/201951134533963.jpg");
 		
 		//회원가입 + 타임라인 생성 by 트랜잭션 처리
 		boolean flag = userService.join(uvo, tvo);

@@ -9,6 +9,12 @@
 	]]>
 	</insert>
 	
+	<update id="update" parameterType="timelinevo">
+	<![CDATA[
+	update timeline set title=#{title}, logo=#{image}, interests=#{interests}, school=#{school}, open=#{open} where email=#{email}
+	]]>
+	</update>
+	
 	<!-- 타임라인 정보 가져오기 -->
 	<select id="getTimeline" parameterType="string" resultType="timelinevo">
 	<![CDATA[

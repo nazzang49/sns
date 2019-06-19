@@ -20,4 +20,8 @@ public class TimelineDAO {
 		return sqlSession.selectOne("timeline.getTimeline", userEmail);
 	}
 	
+	public void updateTimeline(TimelineVO tvo) {
+		sqlSession.update("timeline.update",tvo);
+	}
+	
 }

@@ -14,7 +14,7 @@
 <html>
 
 <head>
-	<title>Weblog a Blogging Category Bootstrap responsive WebTemplate | Single :: w3layouts</title>
+	<title>sns</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -35,6 +35,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="${pageContext.request.contextPath}/assets/css/fontawesome-all.css" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
+	    
+	    
 </head>
 
 <body>
@@ -44,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
-			<a href="index.html">Home</a>
+			<a href="${pageContext.request.contextPath}/test">Home</a>
 		</li>
 		<li class="breadcrumb-item active">Single</li>
 	</ol>
@@ -88,51 +90,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p>내용</p>
 						<a href="single.html" class="btn btn-primary read-m">Read More</a>
 					</div>
-
 					<div class="comment-top">
-						<h4>Comments</h4>
-						<div class="media">
-							<img src="${pageContext.request.contextPath}/assets/images/t1.jpg" alt="" class="img-fluid" />
-							<div class="media-body">
-								<h5 class="mt-0">Joseph Goh</h5>
-								<p>Lorem Ipsum convallis diam consequat magna vulputate malesuada. id dignissim sapien velit id felis ac cursus eros.
-									Cras a ornare elit.</p>
-
-								<div class="media mt-3">
-									<a class="d-flex pr-3" href="#">
-										<img src="${pageContext.request.contextPath}/assets/images/t2.jpg" alt="" class="img-fluid" />
-									</a>
-									<div class="media-body">
-										<h5 class="mt-0">Richard Spark</h5>
-										<p>Lorem Ipsum convallis diam consequat magna vulputate malesuada. id dignissim sapien velit id felis ac cursus eros.
-											Cras a ornare elit.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="comment-top">
-						<h4>Leave a Comment</h4>
+						<h4>타임라인 정보</h4>
 						<div class="comment-bottom">
-							<form action="#" method="post">
-								<input class="form-control" type="text" name="Name" placeholder="Name" required="">
-								<input class="form-control" type="email" name="Email" placeholder="Email" required="">
-
-								<input class="form-control" type="text" name="Subject" placeholder="Subject" required="">
-
-								<textarea class="form-control" name="Message" placeholder="Message..." required=""></textarea>
+							<form action="${pageContext.request.contextPath}/timeline/${authUser.email}/admin/mypage" method="post" enctype="multipart/form-data">
+								<input class="form-control" type="text" name="title" value="${tvo.title }" style="color:black;">
+								
+								<div>
+								<!-- 취미 체크박스 -->
+								<label for="interests-checkbox1">정치</label>
+								<input id="interests-checkbox1" type="checkbox" name="interests" value="정치" style="color:black;">
+								
+								<label for="interests-checkbox2">사회</label>
+								<input id="interests-checkbox2" type="checkbox" name="interests" value="사회" style="color:black;">
+								
+								<label for="interests-checkbox3">문화</label>
+								<input id="interests-checkbox3" type="checkbox" name="interests" value="문화" style="color:black;">
+								
+								<label for="interests-checkbox4">예술</label>
+								<input id="interests-checkbox4" type="checkbox" name="interests" value="예술" style="color:black;">
+								
+								<label for="interests-checkbox5">인문</label>
+								<input id="interests-checkbox5" type="checkbox" name="interests" value="인문" style="color:black;">
+								
+								<label for="interests-checkbox6">기술</label>
+								<input id="interests-checkbox6" type="checkbox" name="interests" value="기술" style="color:black;">
+								
+								<label for="interests-checkbox7">공학</label>
+								<input id="interests-checkbox7" type="checkbox" name="interests" value="공학" style="color:black;">
+								
+								<label for="interests-checkbox8">스포츠</label>
+								<input id="interests-checkbox8" type="checkbox" name="interests" value="스포츠" style="color:black;">
+								
+								<label for="interests-checkbox9">여행</label>
+								<input id="interests-checkbox9" type="checkbox" name="interests" value="여행" style="color:black;">
+								
+								<label for="interests-checkbox10">쇼핑</label>
+								<input id="interests-checkbox10" type="checkbox" name="interests" value="쇼핑" style="color:black;">
+								
+								<label for="interests-checkbox11">직업</label>
+								<input id="interests-checkbox11" type="checkbox" name="interests" value="직업" style="color:black;">
+								</div>
+								
+								<input id="school" class="form-control" type="text" name="school" placeholder="학교 입력" value="${tvo.school }" style="color:black;">
+								
+								<!-- 타임라인 로고 이미지 -->
+								<input type="file" name="logo">
+								
+								<div>
+								<!-- 페이지 이동 시 사전 입력된 공개 여부 체크 -->
+								<label for="open-button1">공개</label>
+								<input id="open-button1" type="radio" name="open" value="Y" <c:if test="${tvo.open eq 'Y'}">checked</c:if>>
+								<label for="open-button2">비공개</label>
+								<input id="open-button2" type="radio" name="open" value="N" <c:if test="${tvo.open eq 'N'}">checked</c:if>>
+								</div>
 								<button type="submit" class="btn btn-primary submit">Submit</button>
 							</form>
 						</div>
 					</div>
 				</div>
 
+				<script>
+				alert('${tvo.image }');
+				</script>
+				
+
 				<!--//left-->
 				<!--right-->
 				<aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
 					<div class="right-blog-info text-left">
 						<div class="tech-btm">
-							<img src="${pageContext.request.contextPath}/assets/images/banner1.jpg" class="img-fluid" alt="">
+							<img src="${pageContext.request.contextPath}/assets${tvo.image}" class="img-fluid" alt="">
 						</div>
 						<div class="tech-btm">
 							<h4>앨범 리스트</h4>

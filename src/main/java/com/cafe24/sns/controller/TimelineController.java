@@ -1,5 +1,6 @@
 package com.cafe24.sns.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -7,9 +8,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.security.Auth;
 import com.cafe24.security.AuthUser;
@@ -65,7 +69,6 @@ public class TimelineController {
 	@RequestMapping("/admin/write")
 	public String write(@AuthUser UserVO authUser,
 						@PathVariable Optional<String> userEmail) {
-		
 		//본인 인증
 		if(userEmail.isPresent()) {
 			//같지 않다면 = 메인으로 이동
@@ -94,10 +97,40 @@ public class TimelineController {
 		//앨범 리스트
 		List<AlbumVO> albumList = timelineService.getAlbumList(userEmail);
 		model.addAttribute("albumList", albumList);
-				
+		//타임라인 기본 정보
+		TimelineVO tvo = timelineService.getTimeline(userEmail);
+		
+		model.addAttribute("tvo", tvo);
+		
 		return "timeline/timeline-admin-mypage"; 
 	}
 	
-	
+	//관리 페이지 작성(본인 인증)
+	@Auth
+	@RequestMapping(value="/admin/mypage", method=RequestMethod.POST)
+	public String mypage(@AuthUser UserVO authUser,
+						 @PathVariable Optional<String> userEmail,
+						 @ModelAttribute TimelineVO tvo,
+						 @RequestParam (value="logo") MultipartFile logo,
+						 Model model) {
+		
+		//본인 인증
+		if(userEmail.isPresent()) {
+			//같지 않다면 = 메인으로 이동
+			if(!authUser.getEmail().equals(userEmail.get())) {
+				return "redirect:/"+userEmail;
+			}
+		}
+		
+		//logo
+		String logoImage = timelineService.restore(logo);
+		tvo.setImage(logoImage);
+		tvo.setEmail(userEmail.get());
+		
+		//update
+		timelineService.updateTimeline(tvo);
+		
+		return "redirect:/timeline/"+userEmail.get()+"/admin/mypage"; 
+	}
 	
 }

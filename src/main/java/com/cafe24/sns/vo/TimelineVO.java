@@ -4,12 +4,18 @@ public class TimelineVO {
 
 	private String email;
 	private String title;
-	private String logo;
 	//관심분야 = 여러개일 경우 하나의 문자열로 입력
 	private String interests;
 	private String school;
 	private String open;
-		
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -21,12 +27,6 @@ public class TimelineVO {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getLogo() {
-		return logo;
-	}
-	public void setLogo(String logo) {
-		this.logo = logo;
 	}
 	public String getInterests() {
 		return interests;
@@ -49,7 +49,7 @@ public class TimelineVO {
 	
 	@Override
 	public String toString() {
-		return "MypageVO [email=" + email + ", title=" + title + ", logo=" + logo + ", interests=" + interests
-				+ ", school=" + school + ", open=" + open + "]";
+		return "TimelineVO [email=" + email + ", title=" + title + ", interests=" + interests + ", school=" + school
+				+ ", open=" + open + ", image=" + image + "]";
 	}
 }
